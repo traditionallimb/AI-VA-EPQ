@@ -20,7 +20,4 @@ out = wavToText('audio_files_harvard.wav')
 
 response = out['AllResults'][0]['WrittenResponse']
 
-for i in response:
-    if response[i] == " " and len(response[:i]) > 50:
-        print("WHAIHIHERIHALKjklf")
-
+print(response)
