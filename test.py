@@ -1,23 +1,9 @@
 import speech_recognition as sr
 import os
+import textwrap
 
 CLIENTID="zqycSsvgNb1Bb4ZJgkubxw=="
 CLIENTKEY="p7bbJOrZDr232RrjGxUkOzNx9pHphVDcsR6eeTw6Zp96yNYuFesaWTpcdc5pOY_3sST6dWroLak2vB1vmQ804w=="
-
-# r = sr.Recognizer()
-
-# harvard = sr.AudioFile('audio_files_harvard.wav')
-# with harvard as source:
-#     audio = r.record(source)
-
-# print(type(audio))
-# print(type(source))
-
-# print("START")
-# out = r.recognize_google(audio)
-# print(out)
-# print(type(out))
-
 
 def wavToText(filePath):
     r = sr.Recognizer()
@@ -30,6 +16,11 @@ def wavToText(filePath):
     except UnknownValueError:
         raise GolemException("Could not understand audio")
 
-out=wavToText('audio_files_harvard.wav')
+out = wavToText('audio_files_harvard.wav')
 
-print(out['AllResults'][0]['WrittenResponse'])
+response = out['AllResults'][0]['WrittenResponse']
+
+for i in response:
+    if response[i] == " " and len(response[:i]) > 50:
+        print("WHAIHIHERIHALKjklf")
+
