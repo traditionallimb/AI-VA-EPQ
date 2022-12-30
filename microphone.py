@@ -17,9 +17,13 @@ def mic_to_text():
         return r.recognize_houndify(audio, client_id=CLIENTID, client_key=CLIENTKEY, show_all=True)
     except UnknownValueError:
         raise GolemException("Could not understand audio")
+    else:
+        print("AGHHGHAGHAGAHGAHGAHGAHGAHGAGH") # theoretically this line should never be used
 
 out = mic_to_text()
 
 response = out['AllResults'][0]["WrittenResponse"]
 
 print(response)
+
+#TODO turn all of this into a class to be called in the main program
