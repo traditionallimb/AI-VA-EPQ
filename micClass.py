@@ -1,16 +1,19 @@
-#! THIS IS A TEMPORARY FILE JUST AS A PLACEHOLDER TO REMIND MYSELF TO MAKE THE MIC CLASS!
 import speech_recognition as sr
 
 class Mic:
+    def __init__(self):
+        self.CLIENTID = "zqycSsvgNb1Bb4ZJgkubxw=="
+        self.CLIENTKEY = "p7bbJOrZDr232RrjGxUkOzNx9pHphVDcsR6eeTw6Zp96yNYuFesaWTpcdc5pOY_3sST6dWroLak2vB1vmQ804w=="
 
-    def micToText(self, clientID, clientKey):
+
+    def micToText(self):
         with sr.Microphone() as source:
             audio = sr.Recognizer().listen(source)
         try:
-            out = sr.Recognizer().recognize_houndify(audio, client_id=clientID, client_key=clientKey, show_all=True)
-        except UnknownValueError:
-            raise GolemException("Could not understand audio")
+            out = sr.Recognizer().recognize_houndify(audio, client_id=self.CLIENTID, client_key=self.CLIENTKEY, show_all=True)
+        except sr.UnknownValueError:
+            raise sr.GolemException("Could not understand audio")
         else:
-            print("AHGAHGAHGAHGAHGAHGAHGAHGAHG") # this line should never be executed
-
-        return out['AllResults'][0]["WrittenResponse"]
+            return out['AllResults'][0]["WrittenResponse"]
+        finally:
+            print("Finished")
