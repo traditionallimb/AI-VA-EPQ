@@ -1,0 +1,6 @@
+3. make micclass record
+   microphone input, and
+   then clean input
+4. pass micclass output
+   though recogniserclass
+   in main

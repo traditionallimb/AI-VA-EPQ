@@ -1,6 +1,10 @@
+import recogniserClass as rc
 import micClass as mc
 
-inp = mc.Mic()
+mic = mc.Mic()
+recording = mic.record()
 
-out = inp.micToText()
+recognise = rc.Recognise()
+
+out = inp.fileToText("//wsl.localhost/Debian/home/limb/AI VA EPQ/AI-VA-EPQ/audio_files_harvard.wav") #TODO take output of microphoneClass as input
 print(f'"{out}"')

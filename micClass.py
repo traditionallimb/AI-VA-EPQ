@@ -1,19 +1,44 @@
-import speech_recognition as sr
+import pyaudio
+import wave
 
 class Mic:
     def __init__(self):
-        self.CLIENTID = "zqycSsvgNb1Bb4ZJgkubxw=="
-        self.CLIENTKEY = "p7bbJOrZDr232RrjGxUkOzNx9pHphVDcsR6eeTw6Zp96yNYuFesaWTpcdc5pOY_3sST6dWroLak2vB1vmQ804w=="
+        self.__chunk = 1024  # Record in chunks of 1024 samples
+        self.__sampleFormat = pyaudio.paInt16  # 16 bits per sample
+        self.__channels = 2
+        self.__fs = 44100  # Record at 44100 samples per second
+        self.__seconds = 3
+        self.__filename = "output.wav1"
 
+    def record(self):
+        p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
-    def micToText(self):
-        with sr.Microphone() as source:
-            audio = sr.Recognizer().listen(source)
-        try:
-            out = sr.Recognizer().recognize_houndify(audio, client_id=self.CLIENTID, client_key=self.CLIENTKEY, show_all=True)
-        except sr.UnknownValueError:
-            raise sr.GolemException("Could not understand audio")
-        else:
-            return out['AllResults'][0]["WrittenResponse"]
-        finally:
-            print("Finished")
+        print("Recording")
+
+        stream = p.open(format=self.__sampleFormat,
+                        channels=self.__channels,
+                        rate=self.__fs,
+                        frames_per_buffer=self.__chunk
+                        input=True)
+        frames = []  # Initialize array to store frames
+
+        # Store data in chunks for 3 seconds
+        for i in range(0, int(self.__fs / self.__chunk * self.__seconds)):
+            data = stream.read(self.__chunk)
+            frames.append(data)
+
+        # Stop and close the steam
+        stream.stop_stream()
+        stream.close()
+        # Terminate the interface
+        p.terminate()
+
+        print("Finished recording")
+
+        # Save the recorded data as a WAV file
+        wf = wave.open(self.__filename, 'wb')
+        wf.setnchannels(self.__channels)
+        wf.setsampwidth(p.get_sample_size(self.__sample_format))
+        wf.setframerate(self.__fs)
+        wf.writeframes(b''.join(frames))
+        wf.close()

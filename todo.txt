@@ -1,4 +1,0 @@
-refactor micclass to recogniserclass
-make recogniserclass take audio file
-make micclass record microphone input, and then clean input
-pass micclass output though recogniserclass in main
