@@ -6,7 +6,7 @@ class Recognise:
         self.CLIENTKEY = "p7bbJOrZDr232RrjGxUkOzNx9pHphVDcsR6eeTw6Zp96yNYuFesaWTpcdc5pOY_3sST6dWroLak2vB1vmQ804w=="
 
 
-    def fileToText(self, pathToAudio):
+    def fileToText(self, pathToAudio: str):
         audioFile = sr.AudioFile(pathToAudio)
         with audioFile as source:
             audio = sr.Recognizer().record(source)
