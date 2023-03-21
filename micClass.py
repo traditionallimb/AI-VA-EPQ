@@ -10,7 +10,7 @@ class Mic:
         self.__seconds = 3
         self.__filename = "output.wav"
 
-    def record(self) -> 'audio file':
+    def record(self):
         p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
         print("Recording")
@@ -42,3 +42,5 @@ class Mic:
         wf.setframerate(self.__fs)
         wf.writeframes(b''.join(frames))
         wf.close()
+
+        print("File saved")
