@@ -1,0 +1,10 @@
+code .\main.py
+echo .
+code .\recogniserClass.py
+echo .
+code .\micClass.py
+echo .
+code .\srLite.py
+echo .
+code .\commandsClass.py
+echo .

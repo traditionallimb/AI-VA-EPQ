@@ -2,7 +2,7 @@ import speech_recognition as sr
 
 r = sr.Recognizer()
 
-keyword = "sam"
+keyword = "frost"
 with sr.Microphone() as source:
     audio = r.listen(source)
 

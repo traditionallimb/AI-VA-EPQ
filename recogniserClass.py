@@ -1,5 +1,4 @@
-import speech_recognition as sr
-import houndifyRecogniserRewrite as mine
+import srLite as srL
 
 class Recognise:
     def __init__(self):
@@ -8,13 +7,13 @@ class Recognise:
 
 
     def fileToText(self, pathToAudio: str):
-        audioFile = mine.AudioFile(pathToAudio)
+        audioFile = srL.AudioFile(pathToAudio)
         with audioFile as source:
-            audio = mine.Recognizer().record(source)
+            audio = srL.Recognizer().record(source)
         try:
-            out = mine.Recognizer().recognize_houndify(audio, client_id=self.CLIENTID, client_key=self.CLIENTKEY, show_all=True)
-        except mine.UnknownValueError:
-            raise mine.GolemException("Could not understand audio")
+            out = srL.Recognizer().recognize_houndify(audio, client_id=self.CLIENTID, client_key=self.CLIENTKEY, show_all=True)
+        except srL.UnknownValueError:
+            raise srL.GolemException("Could not understand audio")
         else:
             return out['AllResults'][0]["WrittenResponse"]
         finally:
