@@ -1,7 +1,7 @@
-import recogniserClass as rc
-import micClass as mc
-import commandsClass as cc
-import speechClass as sc
+import classes.recogniserClass as rc
+import classes.micClass as mc
+import classes.commandsClass as cc
+import classes.speechClass as sc
 
 print("Started")
 mic = mc.Mic()
@@ -17,3 +17,5 @@ if out.lower() == "what is the time":
     response = commands.whatIsTheTime()
     speech.tts(response)
     speech.say("tts.wav")
+#elif out.lower() == "":
+    #print("Unable to recognise your audio")

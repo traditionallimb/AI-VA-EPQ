@@ -1,4 +1,4 @@
-import srLite as srL
+import classes.srLite as srL
 
 class Recognise:
     def __init__(self):
@@ -15,6 +15,11 @@ class Recognise:
         except srL.UnknownValueError:
             raise srL.GolemException("Could not understand audio")
         else:
-            return out['AllResults'][0]["WrittenResponse"]
+            stt = out['AllResults'][0]["WrittenResponse"]
+            if stt == "":
+                print("Unable to recognise your audio")
+                return ""
+            else:
+                return stt
         finally:
             print("Finished")
