@@ -19,3 +19,8 @@ if out.lower() == "what is the time":
     speech.say("audio/tts.wav")
 elif out.lower() == "hello":
     print("Hello!")
+    speech.say("tts.wav")
+#elif out.lower() == "":
+    #print("Unable to recognise your audio")
+
+commands.whatIsTheWeather()
