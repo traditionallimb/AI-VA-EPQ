@@ -8,7 +8,7 @@ class Mic:
         self.__channels = 2
         self.__fs = 44100  # Record at 44100 samples per second
         self.__seconds = 3
-        self.__filename = "recorded.wav"
+        self.__filename = "audio/recorded.wav"
 
     def record(self):
         p = pyaudio.PyAudio()  # Create an interface to PortAudio

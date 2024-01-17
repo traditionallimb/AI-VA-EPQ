@@ -10,12 +10,12 @@ recognise = rc.Recognise()
 commands = cc.Commands()
 speech = sc.Speech()
 
-out = recognise.fileToText("recorded.wav")
+out = recognise.fileToText("audio/recorded.wav")
 print(f'"{out}"')
 
 if out.lower() == "what is the time":
     response = commands.whatIsTheTime()
     speech.tts(response)
-    speech.say("tts.wav")
-#elif out.lower() == "":
-    #print("Unable to recognise your audio")
+    speech.say("audio/tts.wav")
+elif out.lower() == "hello":
+    print("Hello!")

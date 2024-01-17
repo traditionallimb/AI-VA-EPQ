@@ -9,9 +9,9 @@ class Speech:
 
     def tts(self, stringToSay):
         vocalised = gTTS(text=stringToSay, lang='en', slow=False)
-        vocalised.save("tts.mp3")
-        revocalised = AudioSegment.from_mp3("tts.mp3")
-        revocalised.export("tts.wav", format="wav")
+        vocalised.save("audio/tts.mp3")
+        revocalised = AudioSegment.from_mp3("audio/tts.mp3")
+        revocalised.export("audio/tts.wav", format="wav")
 
     def say(self, audioFile):
         filename = audioFile
