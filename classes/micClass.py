@@ -1,5 +1,7 @@
 import pyaudio
 import wave
+from time import sleep
+
 
 class Mic:
     def __init__(self):
@@ -7,20 +9,19 @@ class Mic:
         self.__sampleFormat = pyaudio.paInt16  # 16 bits per sample
         self.__channels = 2
         self.__fs = 44100  # Record at 44100 samples per second
-        self.__seconds = 3
-        self.__filename = "audio/recorded.wav"
+        self.__seconds = 4
 
-    def record(self):
+    def record(self, fileName):
         p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
-        print("Recording")
-
-        stream = p.open(format = self.__sampleFormat,
-                        channels = self.__channels,
-                        rate = self.__fs,
-                        frames_per_buffer = self.__chunk,
+        stream = p.open(format=self.__sampleFormat,
+                        channels=self.__channels,
+                        rate=self.__fs,
+                        frames_per_buffer=self.__chunk,
                         input=True)
         frames = []  # Initialize array to store frames
+
+        sleep(1)
 
         # Store data in chunks for 3 seconds
         for i in range(0, int(self.__fs / self.__chunk * self.__seconds)):
@@ -36,7 +37,7 @@ class Mic:
         print("Finished recording")
 
         # Save the recorded data as a WAV file
-        wf = wave.open(self.__filename, 'wb')
+        wf = wave.open(fileName, 'wb')
         wf.setnchannels(self.__channels)
         wf.setsampwidth(p.get_sample_size(self.__sampleFormat))
         wf.setframerate(self.__fs)
