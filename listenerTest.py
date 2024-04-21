@@ -1,5 +1,8 @@
 import speech_recognition as sr
 
+
+while True:
+
 r = sr.Recognizer()
 
 keyword = "frost"
