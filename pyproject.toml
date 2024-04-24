@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "ai-va-epq"
+version = "0.1.0"
+description = ""
+authors = ["limb <dom@kalowe.me.uk>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
